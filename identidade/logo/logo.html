@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{ --blue:#1F5BFF; --black:#0D0D0D; --white:#FAFAFA; }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;}
+
+  .canvas{
+    display:inline-flex;align-items:center;justify-content:center;
+    background:transparent;
+  }
+
+  /* ============ LOCKUP EMPILHADO (homenagem à logo original) ============ */
+  .stacked{position:relative;padding:60px 80px;}
+  .stacked .word{
+    font-weight:900;font-size:300px;line-height:0.82;letter-spacing:-0.05em;
+    text-align:left;color:var(--black);
+  }
+  .stacked.on-dark .word{color:var(--white);}
+  .stacked .badge{
+    position:absolute;top:50%;left:50%;
+    transform:translate(-50%,-50%) rotate(-8deg);
+    background:var(--blue);color:#fff;
+    font-weight:800;font-size:80px;letter-spacing:-0.01em;
+    padding:14px 40px;border-radius:24px;
+    box-shadow:0 8px 30px rgba(31,91,255,0.35);
+  }
+
+  /* ============ LOCKUP HORIZONTAL (wordmark limpo) ============ */
+  .horiz{display:flex;align-items:center;gap:28px;padding:70px 90px;}
+  .horiz .wm{font-weight:900;font-size:160px;letter-spacing:-0.04em;color:var(--black);}
+  .horiz.on-dark .wm{color:var(--white);}
+  .horiz .pill{
+    background:var(--blue);color:#fff;font-weight:800;font-size:72px;
+    letter-spacing:-0.01em;padding:16px 40px;border-radius:24px;
+  }
+
+  /* ============ ÍCONE (monograma) ============ */
+  .icon{width:520px;height:520px;border-radius:120px;background:var(--blue);
+    display:flex;align-items:center;justify-content:center;}
+  .icon span{font-weight:900;font-size:300px;color:#fff;letter-spacing:-0.06em;line-height:1;}
+</style>
+</head>
+<body>
+
+<!-- 1. EMPILHADO sobre claro -->
+<div class="canvas" id="stacked-dark">
+  <div class="stacked">
+    <div class="word">Svn<br>vox</div>
+    <div class="badge">creative</div>
+  </div>
+</div>
+
+<!-- 2. EMPILHADO sobre escuro -->
+<div class="canvas" id="stacked-light">
+  <div class="stacked on-dark">
+    <div class="word">Svn<br>vox</div>
+    <div class="badge">creative</div>
+  </div>
+</div>
+
+<!-- 3. HORIZONTAL sobre claro -->
+<div class="canvas" id="horiz-dark">
+  <div class="horiz">
+    <div class="wm">synvox</div>
+    <div class="pill">creative</div>
+  </div>
+</div>
+
+<!-- 4. HORIZONTAL sobre escuro -->
+<div class="canvas" id="horiz-light">
+  <div class="horiz on-dark">
+    <div class="wm">synvox</div>
+    <div class="pill">creative</div>
+  </div>
+</div>
+
+<!-- 5. ÍCONE / monograma -->
+<div class="canvas" id="icon">
+  <div class="icon"><span>S</span></div>
+</div>
+
+</body>
+</html>

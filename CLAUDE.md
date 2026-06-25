@@ -113,3 +113,74 @@ Quando o usuário pedir skill nova:
 4. Se a skill precisar de arquivos de apoio (templates, exemplos),
    criar dentro da pasta da skill
 5. Seguir o fluxo da skill-creator nativa do Claude Code
+
+---
+
+# Synvox.creative — contexto do negócio
+
+> Bloco adicionado pelo `/instalar` (perfil: **Empresa / agência**).
+> Adapta as regras de operação à realidade da Synvox.
+
+## O que é esse workspace
+
+Operação da **Synvox.creative** — agência de automações com I.A., sites,
+planejamento de posts e videomaker para redes sociais de clientes.
+Fundada e tocada por **Juliano**. Fase inicial: o foco agora é a própria
+marca (Instagram, site de captação, branding) e gerar caixa.
+
+**Estrutura de pastas:**
+- `_memoria/` — quem é a Synvox, como falamos, foco atual
+- `identidade/` — marca aplicada em tudo que o sistema gera (logo, paleta, personagem)
+- `marketing/` — conteúdo, posts, planejamentos, campanhas
+- `saidas/` — documentos pontuais (propostas, materiais avulsos)
+- `dados/` — arquivos a analisar
+- `templates/` — moldes de perfis e skills
+- `scripts/` — utilitários do sistema
+
+## Sobre a empresa
+
+Synvox.creative é uma agência de tecnologia/conteúdo. Entrega automações
+com I.A., sites, posts automáticos e vídeo. Atende empresas e
+profissionais que querem presença digital e processos automatizados.
+Hoje é **operação solo** (Juliano acumula todas as frentes).
+
+## Frentes (hoje, tudo com o Juliano)
+
+- **Conteúdo / Marketing:** posts e planejamento pro Instagram da Synvox e dos clientes
+- **Sites:** institucional e de captação
+- **Automação I.A.:** processos que tiram trabalho manual das costas
+- **Vídeo (videomaker):** conteúdo para as redes dos clientes
+- **Comercial:** captação e proposta
+
+*(Quando a equipe crescer, atribuir responsáveis por frente aqui.)*
+
+## O que mais fazemos aqui
+
+- Planejamento e geração de posts pro Instagram
+- Sites de captação
+- Automações com I.A. para clientes
+- Vídeos para redes sociais
+
+## Tom de voz
+
+Humanizado, mas eficiente — gente de verdade, não robô de agência nem
+guru. Minimalista e direto, igual à marca. Detalhes em `_memoria/preferencias.md`.
+
+Evitar: emoji em excesso (e **nenhum** em site), jargão de guru, tom corporativo frio.
+
+## Regras do sistema
+
+- Conteúdo e planejamentos de post → `marketing/`
+- Propostas e materiais avulsos → `saidas/`
+- Qualquer peça visual lê `identidade/design-guide.md` antes de criar
+- Prioridade de tudo: atacar o gargalo de caixa (ver `_memoria/estrategia.md`)
+
+## Ferramentas conectadas
+
+- [ ] Notion
+- [ ] Gmail
+- [ ] Google Calendar
+- [ ] Meta Ads (Instagram)
+- [ ] Google Ads
+
+*(Marcar conforme for instalando os MCPs)*
