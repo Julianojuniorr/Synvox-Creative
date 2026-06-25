@@ -1,62 +1,30 @@
-/**
- * Synvox.creative — recebe os leads do formulário do site e grava na planilha.
- *
- * COMO USAR (uma vez só):
- * 1. Crie uma planilha nova no Google Sheets (sheets.new).
- * 2. Na primeira linha, crie os cabeçalhos (opcional — o script cria sozinho se faltar):
- *    Data | Nome | Empresa | WhatsApp | Instagram | Segmento | Serviço | Orçamento | Mensagem
- * 3. No menu da planilha: Extensões > Apps Script.
- * 4. Apague o conteúdo e cole TODO este arquivo. Salve.
- * 5. Clique em "Implantar" (Deploy) > "Nova implantação" > tipo "App da Web".
- *    - Executar como: Eu
- *    - Quem pode acessar: Qualquer pessoa
- * 6. Copie a URL do app da Web e cole no site/index.html (constante SCRIPT_URL).
- * 7. (Opcional) Ative o e-mail: troque SEU_EMAIL abaixo pra receber aviso a cada lead.
- */
+// Synvox.creative - recebe os leads do formulario e grava na planilha.
+// Cole TODO este codigo no Apps Script (Extensoes > Apps Script), salve (Ctrl+S),
+// e implante como App da Web (Executar como: Eu | Acesso: Qualquer pessoa).
 
-var SEU_EMAIL = ""; // ex: "julianojuniorr5@gmail.com" — deixe "" pra não enviar e-mail
+var SEU_EMAIL = ""; // ex: "seuemail@gmail.com" para receber aviso por e-mail (deixe "" para nao enviar)
 
 function doPost(e) {
-  var lock = LockService.getScriptLock();
-  lock.tryLock(10000);
   try {
     var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheets()[0];
-
-    // cria cabeçalho se a planilha estiver vazia
     if (sheet.getLastRow() === 0) {
-      sheet.appendRow(['Data','Nome','Empresa','WhatsApp','Instagram','Segmento','Serviço','Orçamento','Mensagem']);
+      sheet.appendRow(["Data","Nome","Empresa","WhatsApp","Instagram","Segmento","Servico","Orcamento","Mensagem"]);
     }
-
     var p = e.parameter;
-    var quando = new Date();
-    sheet.appendRow([
-      quando, p.nome || '', p.empresa || '', p.whatsapp || '', p.instagram || '',
-      p.segmento || '', p.servico || '', p.orcamento || '', p.mensagem || ''
-    ]);
+    sheet.appendRow([new Date(), p.nome||"", p.empresa||"", p.whatsapp||"", p.instagram||"", p.segmento||"", p.servico||"", p.orcamento||"", p.mensagem||""]);
 
     if (SEU_EMAIL) {
-      MailApp.sendEmail({
-        to: SEU_EMAIL,
-        subject: 'Novo lead Synvox: ' + (p.empresa || p.nome || 'sem nome'),
-        body: 'Nome: ' + (p.nome||'') + '\nEmpresa: ' + (p.empresa||'') +
-              '\nWhatsApp: ' + (p.whatsapp||'') + '\nInstagram: ' + (p.instagram||'') +
-              '\nSegmento: ' + (p.segmento||'') + '\nServiço: ' + (p.servico||'') +
-              '\nOrçamento: ' + (p.orcamento||'') + '\nMensagem: ' + (p.mensagem||'') +
-              '\n\nRecebido em ' + quando
-      });
+      MailApp.sendEmail(SEU_EMAIL, "Novo lead Synvox: " + (p.empresa||p.nome||""),
+        "Nome: " + (p.nome||"") + "\nEmpresa: " + (p.empresa||"") + "\nWhatsApp: " + (p.whatsapp||"") +
+        "\nInstagram: " + (p.instagram||"") + "\nSegmento: " + (p.segmento||"") + "\nServico: " + (p.servico||"") +
+        "\nOrcamento: " + (p.orcamento||"") + "\nMensagem: " + (p.mensagem||""));
     }
-
-    return ContentService.createTextOutput(JSON.stringify({result:'success'}))
-      .setMimeType(ContentService.MimeType.JSON);
+    return ContentService.createTextOutput("ok");
   } catch (err) {
-    return ContentService.createTextOutput(JSON.stringify({result:'error', error: String(err)}))
-      .setMimeType(ContentService.MimeType.JSON);
-  } finally {
-    lock.releaseLock();
+    return ContentService.createTextOutput("erro: " + err);
   }
 }
 
-// permite testar a URL no navegador (deve mostrar "Synvox lead endpoint ok")
 function doGet() {
-  return ContentService.createTextOutput('Synvox lead endpoint ok');
+  return ContentService.createTextOutput("Synvox lead endpoint ok");
 }
